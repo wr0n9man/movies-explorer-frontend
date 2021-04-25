@@ -1,0 +1,148 @@
+.aboutMe{
+	padding-left: 70px;
+	padding-right: 70px;
+	padding-top: 110px;
+}
+
+.aboutMe__header{
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 22px;
+	line-height: 27px;
+	letter-spacing: -0.04em;
+	text-align: left;
+	color: #000000;
+	padding-bottom: 23px;
+	border-bottom: 1px solid #000000;
+	margin-bottom: 66px;
+}
+
+.aboutMe__main{
+	display: flex;
+	justify-content: space-between;
+}
+
+.aboutMe__info{
+	text-align: left;
+	width: 48%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+
+.aboutMe__name{
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 50px;
+	line-height: 58px;
+	/* identical to box height, or 116% */
+	margin-bottom: 18px;
+	letter-spacing: -0.04em;
+
+	color: #000000;
+}
+
+.aboutMe__span{
+	font-family: Inter;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 20px;
+	/* identical to box height, or 111% */
+
+
+	color: #000000;
+
+	mix-blend-mode: normal;
+
+}
+
+.aboutMe__txt{
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 22px;
+	/* or 157% */
+	color: #000000;
+	mix-blend-mode: normal;
+
+}
+
+.aboutMe__links{
+	display: flex;
+
+}
+
+.aboutMe__link{
+	font-family: Inter;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 17px;
+	margin-right: 20px;
+	color: #000000;
+	text-decoration: none;
+}
+
+.aboutMe__img{
+	width: 270px;
+	height: 327px;
+	border-radius: 10px;
+}
+
+@media screen and (max-width: 769px) {
+   .aboutMe{
+      padding-left: 50px;
+	   padding-right: 50px;
+   }
+
+   .aboutMe__img{
+      width: 255px;
+      height: 307px;
+   }
+
+   .aboutMe__name{
+   margin: 0;
+   margin-bottom: 16px;
+   font-size: 40px;
+   line-height: 40px;
+   /* identical to box height, or 100% */
+
+   letter-spacing: -0.04em;
+   }
+
+   .aboutMe__txt{
+      font-size: 12px;
+      line-height: 18px;
+   }
+   
+   .aboutMe__span{
+      font-size: 12px;
+      line-height: 18px;
+      margin-bottom: 20px;
+   }
+}
+
+@media screen and (max-width: 426px) {
+    .aboutMe{
+      padding-left: 14px;
+	   padding-right: 14px;
+   }
+
+    .aboutMe__img{
+      width: 292px;
+      height: 352px;
+   }
+
+   .aboutMe__main{
+      flex-direction: column-reverse;
+   }
+   .aboutMe__info{
+      width: 100%;
+      margin-top: 70px;
+   }
+   
+}

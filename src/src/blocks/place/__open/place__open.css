@@ -1,0 +1,13 @@
+.place__open {
+	border-radius: 10px 10px 0px 0px;
+	padding: 0;
+	border: 0;
+	background-color: white;
+	height: 282px;
+	width: 282px;
+	outline: none;
+}
+
+.place__open:hover {
+	cursor: pointer;
+}

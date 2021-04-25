@@ -1,0 +1,34 @@
+@import "__close-image/popup__close-image.css";
+@import "__container/popup__container.css";
+@import "__content/popup__content.css";
+@import "__input/popup__input.css";
+@import "__head/popup__head.css";
+@import "__save-button/popup__save-button.css";
+@import"__delete-button/popup__delete-button.css";
+@import "__save-button/_inactive/popup__save-button_inactive.css";
+@import "__image/popup__image.css";
+@import "__photo/popup__photo.css";
+@import "__name/popup__name.css";
+@import "__input-error/popup__input-error.css";
+@import "__input-error/_active/popup__input-error_active.css";
+@import "__input/_type_error/popup__input_type_error.css";
+@import "__overlay/popup__overlay.css";
+@import "__overlay/_active/popup__overlay_active.css";
+@import "__image-result/popup__image-result.css";
+@import"__txt/popup__txt.css";
+
+.popup {
+	display: flex;
+	z-index: 1;
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.5s ease;
+	align-items: center;
+	justify-content: center;
+}
