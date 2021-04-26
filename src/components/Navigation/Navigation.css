@@ -1,0 +1,101 @@
+.nav__film{
+	margin-right: 16px;
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 13px;
+	line-height: 18px;
+	/* identical to box height, or 138% */
+
+	text-align: right;
+	text-decoration: none;
+
+	color: #000000;
+	transition: all 1s ease 0s;
+}
+
+.nav__film:hover{
+
+	cursor: pointer;
+	transform: scale(1.1,1.1);
+}
+
+.nav__saved{
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 13px;
+	line-height: 18px;
+	/* identical to box height, or 138% */
+
+	text-align: right;
+	text-decoration: none;
+	color: #000000;
+	transition: all 1s ease 0s;
+}
+
+.nav__saved:hover{
+
+	cursor: pointer;
+	transform: scale(1.1,1.1);
+}
+
+.nav__main{
+	display: none;
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 13px;
+	line-height: 18px;
+	/* identical to box height, or 138% */
+
+	text-align: right;
+	text-decoration: none;
+	color: #000000;
+	transition: all 1s ease 0s;
+}
+
+.nav__main:hover{	
+	cursor: pointer;
+	transform: scale(1.1,1.1);
+}
+
+.nav__active{
+	font-weight: 500;
+}
+
+@media screen and (max-width:1023px) {
+	.nav__active{
+		border-bottom: 2px solid #000000;
+	}
+	.nav{
+		margin-top: 159px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.nav__film{
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 22px;
+		text-align: center;
+		margin: 0;
+		margin-bottom: 28px;
+	}
+	.nav__main{
+		display: block;
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 22px;
+		text-align: center;
+		margin-bottom: 28px;
+	}
+
+	.nav__saved{
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 22px;
+		text-align: center;
+	}
+}
