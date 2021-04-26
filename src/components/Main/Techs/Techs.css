@@ -80,7 +80,7 @@
 	color: #000000;
 }
 
-@media screen and (max-width:769px) {
+@media screen and (max-width:1023px) {
    .techs{
       padding-left: 50px;
       padding-right: 50px;
@@ -95,7 +95,7 @@
 
 }
 
-@media screen and (max-width: 426px) {
+@media screen and (max-width: 767px) {
    .techs{
       padding-top: 70px;
       padding-right: 18px;

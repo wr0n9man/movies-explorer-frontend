@@ -54,7 +54,7 @@
 	color: #000000;
 }
 
-@media screen and (max-width: 426px) {
+@media screen and (max-width: 767px) {
 	.footer{
 		padding-right: 14px;
 		padding-left: 14px;

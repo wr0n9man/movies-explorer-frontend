@@ -12,6 +12,7 @@
 
 .searchForm__textarea{
    display: flex;
+	align-items: center;
    width: calc(100% - 325px);
 }
 
@@ -26,7 +27,11 @@
 	background: #FDFDFD;
 	height: 95%;
 	border: none;
-	width: calc(100% - 64px);
+	width: calc(100% - 146px);
+}
+
+.searchForm__input:focus{
+	border: 3px solid #2BE080;
 }
 
 
@@ -101,7 +106,7 @@
 	margin-right: 30px;
 }
 
-@media screen and (max-width:426px) {
+@media screen and (max-width:767px) {
    .searchForm{
       flex-direction: column;
       box-shadow: none;

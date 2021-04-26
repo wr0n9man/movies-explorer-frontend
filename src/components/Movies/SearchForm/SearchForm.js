@@ -14,7 +14,7 @@ export default function SearchForm(props){
       <form className="searchForm">
          <div className="searchForm__textarea">
             <img className="searchForm__img" src={searchIcon} alt="поиск"/>
-            <input className="searchForm__input" placeholder ="Фильм"/>
+            <input className="searchForm__input" placeholder ="Фильм" required/>
             <button className="searchForm__searchButton"/>
          </div>
 

@@ -110,7 +110,7 @@
 	background-color: #F2F2F2;;
 }
 
-@media screen and (max-width:769px) {
+@media screen and (max-width:1023px) {
    .aboutProject{
       padding-left: 50px;
 	   padding-right: 50px;
@@ -121,7 +121,7 @@
    }
 }
 
-@media screen and (max-width:426px) {
+@media screen and (max-width:767px) {
    .aboutProject{
       padding-right: 18px;
       padding-left: 18px;
@@ -145,12 +145,12 @@
       font-size: 11px;
       line-height: 16px;
    }
-   .aboutProject__back{
-      width: 100px;
+   .aboutProject__back{	
+      width: 35%;
    }
 
    .aboutProject__front{
-      width: 184px;
+      width: 65%;
    }
    .aboutProject__progressBar{
       margin-bottom: 70px;

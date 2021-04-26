@@ -120,7 +120,7 @@
 	color: #2BE080;
 }
 
-@media screen and (max-width:426px) {
+@media screen and (max-width:767px) {
    .register__logo{
       margin: auto;
       margin-top: 56px;

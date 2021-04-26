@@ -92,7 +92,7 @@
 	display: none;
 }
 
-@media screen and (max-width:769px) {	
+@media screen and (max-width:1023px) {	
    .header{
       width: calc(100% - 100px);
       padding-right: 50px;
@@ -163,7 +163,7 @@
 
 }
 
-@media screen and (max-width:426px) {
+@media screen and (max-width:767px) {
 	.header__menu{
 		width: 100%;
 	}

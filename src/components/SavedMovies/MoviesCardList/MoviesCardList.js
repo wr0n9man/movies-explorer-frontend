@@ -1,4 +1,4 @@
-import MoviesCard from '../MoviesCard/MoviesCard'
+import MoviesCard from '../../Movies/MoviesCard/MoviesCard'
 import '../../Movies/MoviesCardList/MoviesCardList.css'
 
 export default function MoviesCardList(){

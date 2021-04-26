@@ -93,7 +93,7 @@
 	border-radius: 10px;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 1023px) {
    .aboutMe{
       padding-left: 50px;
 	   padding-right: 50px;
@@ -126,13 +126,14 @@
    }
 }
 
-@media screen and (max-width: 426px) {
+@media screen and (max-width: 767px) {
     .aboutMe{
       padding-left: 14px;
 	   padding-right: 14px;
    }
 
     .aboutMe__img{
+		margin: auto;
       width: 292px;
       height: 352px;
    }
