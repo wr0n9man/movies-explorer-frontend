@@ -251,15 +251,18 @@ function App() {
       <InfoTooltip isOpened={isInfoTooltip} result={result} handleCloseInfoTooltip={handleCloseInfoTooltip}/>
       <Switch>        
         <Route path="/movies">
+        {loggedIn ? <Redirect to="/movies" /> : <Redirect to="/" />}
           <Header loggedIn={loggedIn} />
           <Movies   movie={movie} myMovie={myMovie} handleDeleteMovie={handleDeleteMovie} handleSaveMovie={handleSaveMovie} info={info} addMovie={addMovie} more={more} handleSetMore={handleSetMore} handlerSubmit={searchMovie} movieCount={movieCount} setMovieCount={setMovieCount} render={render}/>
           <Footer />
         </Route>
         <Route path="/profile">
+        {loggedIn ? <Redirect to="/profile" /> : <Redirect to="/" />}
           <Header loggedIn={loggedIn} />
           <Profile handleLoggedIn={handleLoggedIn} handleRedactProfile={handleRedactProfile}/>
         </Route>
-        <Route path="/saved-movies">       
+        <Route path="/saved-movies">  
+        {loggedIn ? <Redirect to="/saved-movies" /> : <Redirect to="/" />}     
           <Header loggedIn={loggedIn} />
           <SavedMovies handleGetMyMovie={handleGetMyMovie} handleDeleteMovie={handleDeleteMyMovie} myMovie={myMovie} movieCount={movieCount}  render={render}/>
           <Footer />
@@ -269,7 +272,7 @@ function App() {
           <Main />
           <Footer />
         </Route>
-        {loggedIn ? <Redirect to="/movies" /> : <Redirect to="/" />}
+       
         <Route path="/signin">
           <Login handleSubmitLogin={handleSubmitLogin}/>
         </Route>
@@ -279,6 +282,7 @@ function App() {
         <Route>
           <NotFound />
         </Route>
+  
       </Switch>
       </CurrentUserContext.Provider>
     </div>
