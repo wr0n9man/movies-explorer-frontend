@@ -162,8 +162,10 @@ function searchMyMovie(atribut, dop){
   function handleSubmitRegister(state){
     MainApi.registrationUsers(state)	
     .then((res) => {
-      handleLoggedIn()
-      history.push('/movies')
+      if (res.token){
+        handleLoggedIn()
+        history.push('/movies')
+        }
     })
     .catch((err)=>{
       handleSetResultFalse();
