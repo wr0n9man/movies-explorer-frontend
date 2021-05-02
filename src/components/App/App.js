@@ -86,6 +86,10 @@ function App() {
   useEffect(()=>{
     handleCheckSaveMovie();
   },[myMovie])
+  
+  useEffect(()=>{
+    localStorage.setItem("route",history.location.pathname)
+  })
 
   function handleSetMore(){
     if (movie.length <= movieCount){
@@ -250,14 +254,14 @@ function searchMyMovie(atribut, dop){
 
   function handlerTokenCheck(){
     if (localStorage.getItem('token')){
-    
+      if (localStorage.getItem('route')){
+        history.push(localStorage.getItem('route'))
+      }
       handleLoggedIn();		
       MainApi.getUserInfo().then((res)=>{        
-      if(res){
-     		
+      if(res){     		
           setCurrentUser(res);
-          handleGetMyMovie(setMyMovie)
-          
+          handleGetMyMovie(setMyMovie)          
         }
         })
       .catch(()=>{
@@ -283,7 +287,8 @@ function searchMyMovie(atribut, dop){
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
       <InfoTooltip isOpened={isInfoTooltip} result={result} handleCloseInfoTooltip={handleCloseInfoTooltip}/>
-      <Switch>        
+      <Switch>
+         
         <Route path="/movies">
         {loggedIn ? <Redirect to="/movies" /> : <Redirect to="/" />}
           <Header loggedIn={loggedIn} />
