@@ -249,13 +249,15 @@ function searchMyMovie(atribut, dop){
 
 
   function handlerTokenCheck(){
-    if (localStorage.getItem('token')){	
+    if (localStorage.getItem('token')){
+      history.push('/movies')
+      handleLoggedIn();		
       MainApi.getUserInfo().then((res)=>{        
-      if(res){	
-          handleLoggedIn();			
+      if(res){
+     		
           setCurrentUser(res);
           handleGetMyMovie(setMyMovie)
-          history.push('/movies')
+          
         }
         })
       .catch(()=>{
