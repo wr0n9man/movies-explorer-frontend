@@ -164,6 +164,7 @@ function searchMyMovie(atribut, dop){
     .then((res) => {
       if (res.token){
         handleLoggedIn()
+        handlerTokenCheck()
         history.push('/movies')
         }
     })
@@ -178,6 +179,7 @@ function searchMyMovie(atribut, dop){
     .then((res) => {
       if (res.token){
       handleLoggedIn()
+      handlerTokenCheck()
       history.push('/movies')
       }
     })

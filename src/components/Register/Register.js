@@ -43,7 +43,7 @@ export default function Register(props){
          <input className="register__input" name="email" value={form.email} onChange={update} type="email"  required/>
          <span className="register__error">{errors.email}</span>
          <span className="register__span">Пароль</span>
-         <input type="password" className="register__input" name="password" value={form.password} onChange={update} required/>
+         <input type="password" className="register__input" name="password" value={form.password} onChange={update} min="6" required/>
          <span className="register__error">{errors.password}</span>
          <button  className={isValid?"register__button register__button_active":"register__button"}>Зарегистрироваться</button>
       </form>
