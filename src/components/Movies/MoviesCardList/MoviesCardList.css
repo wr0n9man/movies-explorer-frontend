@@ -1,10 +1,17 @@
 .moviesCardList{
 	display: flex;
 	flex-direction: column;
+	margin-bottom: 80px;
+	
 
 }
 
+.moviesCardList_active{
+	display: none;
+}
+
 .moviesCardList__grid{
+	justify-content: center;	
 	width: 100%;
 	margin: auto;
 	display: grid;
@@ -14,10 +21,10 @@
 }
 
 .moviesCardList__button{
+	display: none;
 	border: none;
 	background-color: #F9F9F9;
 	margin-top: 50px;
-	margin-bottom: 80px;
 	height: 36px;
 	width: 100%;
 
@@ -28,6 +35,10 @@
 	line-height: 15px;
 	text-align: center;
 	color: #000000;
+}
+
+.moviesCardList__button_active{
+	display: block;
 }
 
 @media screen and (max-width: 1281px) {

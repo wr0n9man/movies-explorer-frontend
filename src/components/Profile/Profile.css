@@ -31,9 +31,8 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding-bottom: 16px;
+
 	border-bottom: 1px solid #E8E8E8;
-	margin-bottom: 17px;
 }
 
 .profile__span{
@@ -47,7 +46,7 @@
 }
 
 .profile__input{
-	height: 14px;
+	height: 36px;
 	width: 90%;
 	border: none;
 	font-family: Inter;
@@ -77,14 +76,29 @@
 	line-height: 16px;
 	/* identical to box height */
 	border: none;
-	background-color: white;
-	
-	text-align: center;
-	
+	background-color: white;	
+	text-align: center;	
 	color: #000000;
 	margin-bottom: 16px;
-	
+	opacity: .5;
+	transition: all ease-in-out .3s;
 }
+
+.profile__redact_active{
+	opacity: 1;
+} 
+
+
+.profile__redact_active:hover{
+	cursor: pointer;
+	transform: scale(1.2);
+} 
+
+
+.profile__redact_active:active{
+	cursor: pointer;
+	transform: scale(1.1);
+} 
 
 .profile__logout{
 	border: none;
@@ -100,6 +114,15 @@
    text-align: center;
 
    color: #EE3465;
+}
 
-
+.profile__error{
+	text-align: left;
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 10px;
+	line-height: 12px;
+	margin-bottom: 20px;
+	color: #EE3465;
 }

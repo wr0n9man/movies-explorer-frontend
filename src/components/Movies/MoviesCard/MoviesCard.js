@@ -1,10 +1,29 @@
 import './MoviesCard.css'
 import iconSave from '../../../images/iconSaved.svg'
+import { useState } from 'react';
 
 export default function MoviesCard(props){
+   const [saved, setSaved]= useState(false)
+
    if (props.movie.image){
       var image=`https://api.nomoreparties.co${props.movie.image.url}`
    }
+  
+   function handleDeleteMovie(){
+      setSaved(false);
+      props.handleDeleteMovie(props.movie)    
+     
+      console.log(props.movie.saved,' ', saved);
+   }
+
+
+   function handleSaveCard(){
+      setSaved(true);
+      props.handleSaveMovie(props.movie);
+      
+   
+   }
+
    return(
       <div className="moviesCard">
          <div className="moviesCard__info">
@@ -13,8 +32,15 @@ export default function MoviesCard(props){
          </div>
          <a  className="moviesCard__link" href={props.movie.trailerLink}>      
          <img className="moviesCard__img" src={image} alt={props.movie.nameRu}/>
-         </a>   
-         <button className={props.saved?"moviesCard__button moviesCard__button_active":"moviesCard__button"}>{props.saved?<img src={iconSave} alt='Сохранено'/>:"Сохранить"}</button>
+         </a> 
+         {(saved || props.movie.saved)?
+         <>
+         <button  onClick={handleDeleteMovie} className="moviesCard__button moviesCard__button_active"><img src={iconSave} alt='Сохранено'/></button>
+         </>:
+         <>
+         <button  onClick={handleSaveCard} className="moviesCard__button">Сохранить</button>
+         </>}  
+         
       </div>
    )
 }

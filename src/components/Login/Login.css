@@ -30,6 +30,7 @@
 .login__form{
 	display: flex;
 	flex-direction: column;
+	width: 396px;
 }
 
 .login__span{
@@ -68,20 +69,23 @@
 	/* identical to box height */
 
 	text-align: center;
-
+	opacity: .5;
 	color: #FFFFFF;
 	transition: all 1s ease 0s;
 }
 
 
+.login__button_active{
+	opacity: 1;
+}
 
 
-.login__button:hover{
+.login__button_active:hover{
 	cursor: pointer;
 	transform: scale(1.1,1.1);
 }
 
-.login__button:active{
+.login__button_active:active{
 	cursor: pointer;
 	transform: scale(.9,.9);
 }
@@ -120,6 +124,7 @@
 }
 
 .login__error{
+	text-align: left;
 	font-family: Inter;
 	font-style: normal;
 	font-weight: normal;

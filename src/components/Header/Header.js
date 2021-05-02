@@ -20,13 +20,17 @@ export default function Header(props){
 	return(
 		<div className="header">
       
+         <Link to="/" >
+               <img className="header__logo" src={logo} alt="логотип"/>
+         </Link>
+
+         {props.loggedIn &&<>
          <div className="header__burger" onClick={handleBurger}>
             <span/>
          </div>
          <div className={burger?"header__overlay header__overlay_active":"header__overlay"} onClick={handleBurger}/>
-         <Link to="/" >
-               <img className="header__logo" src={logo} alt="логотип"/>
-         </Link>
+         </>
+         }
          {props.loggedIn ?
          
          <div className={burger?"header__menu header__menu_active":"header__menu"}>            

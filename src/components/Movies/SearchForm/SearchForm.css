@@ -22,7 +22,7 @@
    display: flex;
 	align-items: center;
 	height: 80%;
-   width: calc(100% - 325px);
+   width: calc(100% - 256px);
 }
 
 .searchForm__img{
@@ -139,17 +139,16 @@
       height: auto;
       margin-bottom: 45px;
    }
-	.searchForm__form__error {
+	.searchForm__form_err {
 		width: 100%;
 		margin-bottom: 45px;
+		border: none;
 	}
 
 	.searchForm__textarea_err{
 		border: 1px solid #EE3465 ;
 	}
-	.searchForm_err{
-		border: none;
-	}
+
 
    .searchForm__textarea{
       box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);

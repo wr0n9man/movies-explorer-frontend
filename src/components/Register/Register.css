@@ -45,6 +45,7 @@
 }
 
 .register__error{
+	text-align: left;
 	font-family: Inter;
 	font-style: normal;
 	font-weight: normal;
@@ -60,7 +61,7 @@
 	margin-top: 90px;
 	background-color: #2BE080;
 	border-radius: 3px;
-
+	opacity: .5;
 	font-family: Inter;
 	font-style: normal;
 	font-weight: 500;
@@ -74,18 +75,20 @@
 	transition: all 1s ease 0s;
 }
 
+.register__button_active{
+	opacity: 1;
+}
 
+.register__button_active:active{
+	cursor: pointer;
+	transform: scale(.9,.9);
+}
 
-
-.register__button:hover{
+.register__button_active:hover{
 	cursor: pointer;
 	transform: scale(1.1,1.1);
 }
 
-.register__button:active{
-	cursor: pointer;
-	transform: scale(.9,.9);
-}
 
 .register__dop{
 	display: flex;
