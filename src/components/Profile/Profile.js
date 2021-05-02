@@ -2,6 +2,7 @@ import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 import { useContext, useState } from 'react';
 import './Profile.css';
 import { useHistory } from "react-router";
+import { useEffect } from "react/cjs/react.development";
 
 
 
@@ -14,6 +15,13 @@ export default function Profile(props){
       name: currentUser.name,
       email: currentUser.email
    })
+
+   useEffect(()=>{
+      setForm({
+         name: currentUser.name,
+         email: currentUser.email
+      });
+   },[currentUser])
 
    function update(e){
       setForm({
