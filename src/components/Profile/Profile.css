@@ -112,9 +112,19 @@
    /* identical to box height */
 
    text-align: center;
-
+	transition: all ease-in-out .3s;
    color: #EE3465;
 }
+
+.profile__logout:hover{
+	cursor: pointer;
+	transform: scale(1.2);
+} 
+
+.profile__logout:active{
+	cursor: pointer;
+	transform: scale(1.1);
+} 
 
 .profile__error{
 	text-align: left;

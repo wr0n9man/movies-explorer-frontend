@@ -4,6 +4,7 @@ import '../../Movies/MoviesCardList/MoviesCardList.css'
 export default function MoviesCardList(props){
    return(
       <div className="moviesCardList">
+         <span>{props.info}</span>
          <div className="moviesCardList__grid">
          {
             props.myMovies.slice(0,props.movieCount).map((movie)=>(            

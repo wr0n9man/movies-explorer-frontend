@@ -12,7 +12,7 @@ export default function Main(props){
 		<>
 		
 			
-				<Promo/>
+				<Promo width={props.width}/>
 				<AboutProject/>
 				<Techs/>
 				<AboutMe/>

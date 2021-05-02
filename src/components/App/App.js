@@ -21,7 +21,8 @@ import InfoTooltip from "../InfoTooltip/InfoTooltip";
 function App() {
   const [loggedIn , setLoggedIn ]= useState(false)
   const [currentUser, setCurrentUser ]= useState({});
-  const [info,setInfo]= useState("");
+  const [infoSearch,setInfoSearch]= useState("");
+  const [infoMySearch,setMyInfoSearch]= useState("");
   const [movie,setMovie]= useState([]);
   const [myMovie,setMyMovie]= useState([]);  
   const [width,setWidth]= useState(window.innerWidth);
@@ -117,26 +118,45 @@ function App() {
     setResult(false)
   }
 
-  function searchMovie(atribut, dop){
-    setRender(true)
+
+  function handleSearc(values,atribut,dop,setter,setterInfo){
+    let newMovie;
     let lang=(/[а-яё]/i).test(atribut.toLowerCase)   
-    MoviesApi.getMovies()
-    .then((values)=>{
-      if (values.length===0){
-        setInfo('Ничего не найдено')
-      }
-      localStorage.setItem('movie',JSON.stringify( values));
-      if(dop){
-        setMovie(values.filter(item => item.duration < 40).filter(movie=> (lang?movie.nameEN:movie.nameRU).toLowerCase().match(new RegExp(atribut.toLowerCase()))));
-      }else{
-        console.log(lang);
-        setMovie(values.filter(movie=> (lang?movie.nameEN:movie.nameRU).toLowerCase().match(new RegExp(atribut.toLowerCase()))));
-      }  
-      setRender(false);
-      setInfo('')
-    }).catch(setInfo("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"))
-  
+   
+    if(dop){
+      newMovie=values.filter(item => item.duration < 40).filter(movie=> (lang?movie.nameEN:movie.nameRU).toLowerCase().match(new RegExp(atribut.toLowerCase())))
+      setter(newMovie);
+    }else{
+      newMovie= values.filter(movie=> (lang?movie.nameEN:movie.nameRU).toLowerCase().match(new RegExp(atribut.toLowerCase())))    
+      setter(newMovie);
+    } 
+    if (newMovie.length===0){
+      setterInfo('Ничего не найдено')
+    }else{
+      setterInfo('')
     }
+  }
+
+  function searchMovie(atribut, dop){
+    setRender(true)   
+    MoviesApi.getMovies()
+    .then((values)=>{ 
+      localStorage.setItem('movie',JSON.stringify(values));
+      handleSearc(values,atribut, dop,setMovie,setInfoSearch) 
+      setRender(false);
+    
+    }).catch(setInfoSearch("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"))
+}
+
+
+function searchMyMovie(atribut, dop){
+  setRender(true)
+  MainApi.getMovie()
+  .then((values)=>{ 
+    handleSearc(values,atribut, dop,setMyMovie,setMyInfoSearch) 
+    setRender(false);
+  }).catch( setMyInfoSearch("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"))
+}
 
 
   function handleSubmitRegister(state){
@@ -154,8 +174,10 @@ function App() {
   function handleSubmitLogin(state){
     MainApi.loginUsers(state)	
     .then((res) => {
+      if (res.token){
       handleLoggedIn()
       history.push('/movies')
+      }
     })
     .catch((err)=>{		
       handleSetResultFalse();
@@ -191,7 +213,7 @@ function App() {
   }
 
   function handleDeleteMovie(movie){ 
-    MainApi.deleteMovie(myMovie.find(myMovie =>myMovie.movieId==movie.id)._id).then(()=>{
+    MainApi.deleteMovie(myMovie.find(myMovie =>myMovie.movieId===movie.id)._id).then(()=>{
       movie.saved=false;
       handleGetMyMovie(setMyMovie)
     }).catch(()=>{
@@ -235,7 +257,7 @@ function App() {
 
   function handleCheckSaveMovie(){    
     movie.map((movie)=>{     
-      if( myMovie.find(myMovie =>myMovie.movieId==movie.id)){        
+      if( myMovie.find(myMovie =>myMovie.movieId===movie.id)){        
         movie.saved=true;
       }else{
         movie.saved=false;
@@ -243,7 +265,7 @@ function App() {
     }) 
   }
 
-  
+  handleCheckSaveMovie()
 
   return (
     <div className="App">
@@ -253,7 +275,7 @@ function App() {
         <Route path="/movies">
         {loggedIn ? <Redirect to="/movies" /> : <Redirect to="/" />}
           <Header loggedIn={loggedIn} />
-          <Movies   movie={movie} myMovie={myMovie} handleDeleteMovie={handleDeleteMovie} handleSaveMovie={handleSaveMovie} info={info} addMovie={addMovie} more={more} handleSetMore={handleSetMore} handlerSubmit={searchMovie} movieCount={movieCount} setMovieCount={setMovieCount} render={render}/>
+          <Movies   movie={movie} myMovie={myMovie} handleDeleteMovie={handleDeleteMovie} handleSaveMovie={handleSaveMovie} info={infoSearch} addMovie={addMovie} more={more} handleSetMore={handleSetMore} handlerSubmit={searchMovie} movieCount={movieCount} setMovieCount={setMovieCount} render={render}/>
           <Footer />
         </Route>
         <Route path="/profile">
@@ -264,12 +286,12 @@ function App() {
         <Route path="/saved-movies">  
         {loggedIn ? <Redirect to="/saved-movies" /> : <Redirect to="/" />}     
           <Header loggedIn={loggedIn} />
-          <SavedMovies handleGetMyMovie={handleGetMyMovie} handleDeleteMovie={handleDeleteMyMovie} myMovie={myMovie} movieCount={movieCount}  render={render}/>
+          <SavedMovies info={infoMySearch} handlerSubmit={searchMyMovie} handleGetMyMovie={handleGetMyMovie} handleDeleteMovie={handleDeleteMyMovie} myMovie={myMovie} movieCount={movieCount}  render={render}/>
           <Footer />
         </Route>
         <Route exact path="/">
           <Header loggedIn={loggedIn} />
-          <Main />
+          <Main width={width}/>
           <Footer />
         </Route>
        

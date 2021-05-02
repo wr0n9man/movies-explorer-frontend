@@ -18,6 +18,7 @@ export default function MoviesCard(props){
 
 
    function handleSaveCard(){
+      console.log(props.movie);
       setSaved(true);
       props.handleSaveMovie(props.movie);
       

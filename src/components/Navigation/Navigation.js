@@ -4,15 +4,13 @@ import { useEffect } from 'react';
 import { useState } from 'react/cjs/react.development';
 
 
-export default function Navigation(props){
-
- 
+export default function Navigation(){
    const history = useHistory();
    const [pathname, setPathname] = useState(history.location.pathname);
- 
+
    useEffect(()=>{
       setPathname(history.location.pathname);
-  })
+   })
 
    return(
       <div className="nav">
