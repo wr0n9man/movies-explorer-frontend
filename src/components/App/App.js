@@ -88,7 +88,9 @@ function App() {
   },[myMovie])
   
   useEffect(()=>{
+    if(history.location.pathname!=="/profile"){
     localStorage.setItem("route",history.location.pathname)
+    }
   })
 
   function handleSetMore(){
@@ -252,14 +254,16 @@ function searchMyMovie(atribut, dop){
   }
 
 
-  function handlerTokenCheck(){
+  function handlerTokenCheck(){ 
     if (localStorage.getItem('token')){
-      if (localStorage.getItem('route')){
-        history.push(localStorage.getItem('route'))
-      }
+      if(performance.navigation.type===1){
+        if (localStorage.getItem('route')){
+          history.push(localStorage.getItem('route'))
+        }
+      }else{history.push('/movies')}
       handleLoggedIn();		
       MainApi.getUserInfo().then((res)=>{        
-      if(res){     		
+      if(res){   		
           setCurrentUser(res);
           handleGetMyMovie(setMyMovie)          
         }
