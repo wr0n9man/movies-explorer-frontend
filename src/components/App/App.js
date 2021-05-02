@@ -204,23 +204,29 @@ function searchMyMovie(atribut, dop){
     })
   }
 
-  function handleSaveMovie(state){
+  function handleSaveMovie(state, setter){
 
     MainApi.sendMovie(state).then(()=>{
+      setter(true);
       state.saved=true;
       handleGetMyMovie(setMyMovie)     
       
     }).catch(()=>{
+      setter(false);
+      state.saved=false;
       handleSetResultFalse();
       handleInfoTooltip();
     })
   }
 
-  function handleDeleteMovie(movie){ 
+  function handleDeleteMovie(movie,setter){ 
     MainApi.deleteMovie(myMovie.find(myMovie =>myMovie.movieId===movie.id)._id).then(()=>{
       movie.saved=false;
+      setter=(false);
       handleGetMyMovie(setMyMovie)
     }).catch(()=>{
+      movie.saved=true;
+      setter (true);
       handleSetResultFalse();
       handleInfoTooltip();
     })

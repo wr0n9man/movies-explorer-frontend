@@ -10,17 +10,15 @@ export default function MoviesCard(props){
    }
   
    function handleDeleteMovie(){
-      setSaved(false);
-      props.handleDeleteMovie(props.movie)    
-     
-      console.log(props.movie.saved,' ', saved);
+      
+      props.handleDeleteMovie(props.movie,setSaved)    
+ 
    }
 
 
-   function handleSaveCard(){
-      console.log(props.movie);
-      setSaved(true);
-      props.handleSaveMovie(props.movie);
+   function handleSaveCard(){    
+      
+      props.handleSaveMovie(props.movie,setSaved);
       
    
    }
