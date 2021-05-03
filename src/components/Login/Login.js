@@ -1,7 +1,7 @@
 import './Login.css'
 import { Link } from 'react-router-dom';
 import logo from "../../images/logo.png"
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 
 export default function Login(props){
 

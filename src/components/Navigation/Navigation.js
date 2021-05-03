@@ -1,7 +1,6 @@
 import './Navigation.css'
 import {Link, useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useState } from 'react/cjs/react.development';
+import { useEffect,useState } from 'react';
 
 
 export default function Navigation(){

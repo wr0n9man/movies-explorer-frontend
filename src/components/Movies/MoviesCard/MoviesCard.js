@@ -1,6 +1,6 @@
 import './MoviesCard.css'
 import iconSave from '../../../images/iconSaved.svg'
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function MoviesCard(props){
    const [saved, setSaved]= useState(false)
@@ -9,18 +9,13 @@ export default function MoviesCard(props){
       var image=`https://api.nomoreparties.co${props.movie.image.url}`
    }
   
-   function handleDeleteMovie(){
-      
-      props.handleDeleteMovie(props.movie,setSaved)    
- 
+   function handleDeleteMovie(){      
+      props.handleDeleteMovie(props.movie,setSaved)
    }
 
 
    function handleSaveCard(){    
-      
-      props.handleSaveMovie(props.movie,setSaved);
-      
-   
+      props.handleSaveMovie(props.movie,setSaved); 
    }
 
    return(

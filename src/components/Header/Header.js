@@ -25,7 +25,7 @@ export default function Header(props){
          </Link>
 
          {props.loggedIn &&<>
-         <div className="header__burger" onClick={handleBurger}>
+         <div className={burger?"header__burger header__burger_active":"header__burger"} onClick={handleBurger}>
             <span/>
          </div>
          <div className={burger?"header__overlay header__overlay_active":"header__overlay"} onClick={handleBurger}/>

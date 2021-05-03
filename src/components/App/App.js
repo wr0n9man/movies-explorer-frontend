@@ -12,14 +12,14 @@ import Footer from "../Footer/Footer";
 import {CurrentUserContext} from "../../context/CurrentUserContext"
 import MoviesApi from "../../utils/MoviesApi";
 import MainApi from "../../utils/MainApi"
-import {  useState } from "react/cjs/react.development";
-import { useEffect } from "react";
+
+import { useEffect,useState } from "react";
 import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 
 
 function App() {
-  const [loggedIn , setLoggedIn ]= useState(false)
+  const [loggedIn , setLoggedIn]= useState(false);
   const [currentUser, setCurrentUser ]= useState({});
   const [infoSearch,setInfoSearch]= useState("");
   const [infoMySearch,setMyInfoSearch]= useState("");

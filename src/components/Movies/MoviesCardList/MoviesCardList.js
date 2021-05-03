@@ -3,8 +3,6 @@ import './MoviesCardList.css'
 
 export default function MoviesCardList(props){
 
-
-
    function addCardMovies(){
       props.setMovieCount(props.movieCount+props.addMovie);   
       props.handleSetMore() 
