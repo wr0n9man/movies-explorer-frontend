@@ -10,7 +10,7 @@ export default function AboutMe(){
                <div>
 					<h3 className="aboutMe__name">Дмитрий</h3>
 					<span className="aboutMe__span">Фронтенд-разработчик, 20 лет</span>
-					<p className="aboutMe__txt">Я родился и живу в Ижевску, учусь на факультете ИВТ ИжГТУ. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. </p>
+					<p className="aboutMe__txt">Я родился и живу в Ижевске, учусь на факультете ИВТ ИжГТУ. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. </p>
 					</div>
                <div className="aboutMe__links">
 						<a className="aboutMe__link" href="https://vk.com/wr0n9man">ВКонтакте</a>
