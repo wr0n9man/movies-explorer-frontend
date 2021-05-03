@@ -14,13 +14,16 @@ export default function SearchForm(props){
    function handleDopButton(e){
       e.preventDefault();
       setDop(!dop);
+      props.handlerShortFilm(!dop)
    }
+
 
    function handleSubmitForm(e){
       e.preventDefault();
       if (film){
          setValid(true)
          props.handlerSubmit(film,dop)
+
       }else{
          setValid(false)
       }

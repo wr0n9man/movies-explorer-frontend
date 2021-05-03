@@ -1,6 +1,6 @@
 import './NotFound.css'
 
-export default function NotFound(){
+export default function NotFound(props){
 	return(
 		<div className="notFound">
 			<div/>
@@ -8,7 +8,7 @@ export default function NotFound(){
 				<h2 className="notFound__header">404</h2>
 				<span className="notFound__span">Страница не найдена</span>
 			</div>
-			<button className="notFound__button">Назада</button>
+			<button onClick={props.handleGoBack} className="notFound__button">Назада</button>
 		</div>
 	)
 }

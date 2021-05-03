@@ -13,7 +13,9 @@ export default function SearchForm(props){
 
    function handleDopButton(e){
       e.preventDefault();
+      
       setDop(!dop);
+      props.searchMyShortMovie(!dop)
    }
 
    function handleSubmitForm(e){

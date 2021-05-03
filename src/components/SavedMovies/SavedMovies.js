@@ -9,7 +9,7 @@ export default function SavedMovies(props){
 
    return(
       <div className="movie">
-         <SearchForm handlerSubmit={props.handlerSubmit}/>
+         <SearchForm searchMyShortMovie={props.searchMyShortMovie} handlerSubmit={props.handlerSubmit}/>
          <Preloader render={props.render}/> 
          <MoviesCardList info={props.info} handleDeleteMovie={props.handleDeleteMovie} myMovies={props.myMovie}/>
       

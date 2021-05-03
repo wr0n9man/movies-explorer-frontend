@@ -38,10 +38,20 @@
 	font-size: 14px;
 	line-height: 17px;
 	/* identical to box height */
-	
+	width:  100px;
+	margin: 0 auto;
 	border: none;
 	background-color: white;
 	text-align: center;
-	
+	transition: all ease-in .3s;
 	color: #2BE080;
+}
+
+.notFound__button:hover{
+	cursor: pointer;
+	transform: scale(1.1);
+}
+
+.notFound__button:active{
+	transform: scale(.9);
 }

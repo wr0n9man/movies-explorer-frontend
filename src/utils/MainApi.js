@@ -40,14 +40,17 @@ class MainApi {
 				password: data.password
 			})		
 		})
-		.then(response =>response.json())
+		.then(res =>{	
+			if (res.ok) {
+				return res.json();
+		}})
 		.then((data) => {	
 			if (data.token){
 				localStorage.setItem('token', data.token);			
 				return data;
 			}
 		})
-		.catch()
+		
 	}
 
 	getUserInfo(){
@@ -56,9 +59,12 @@ class MainApi {
 			headers:{
 				"Authorization" : `Bearer ${localStorage.getItem('token')}`,
 				"Content-Type": "application/json"}
-		}).then(res => { return res.json()})
+		}).then(res => { 	
+			if (res.ok) {
+			return res.json();
+		}})
 		.then(data => data)
-		.catch(err => {})
+		
 	}
 
 	sendUserInfo(data){

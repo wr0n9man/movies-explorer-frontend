@@ -12,7 +12,7 @@ import Footer from "../Footer/Footer";
 import {CurrentUserContext} from "../../context/CurrentUserContext"
 import MoviesApi from "../../utils/MoviesApi";
 import MainApi from "../../utils/MainApi"
-import { useState } from "react/cjs/react.development";
+import {  useState } from "react/cjs/react.development";
 import { useEffect } from "react";
 import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
@@ -33,13 +33,19 @@ function App() {
   const [isInfoTooltip, setIsInfoTooltip]= useState(false);
   const [result, setResult] = useState(false)
   const history = useHistory();
+  const ShortFilmTime=40;
+  const MonitorWidth={
+    fullHd:1281,
+    hd:1025,
+    small:550
+  }
 
   useEffect(()=>{
-    if(width > 1281){
+    if(width > MonitorWidth.fullHd){
       setMovieCount(16);
-    } else if(width > 1025){
+    } else if(width > MonitorWidth.hd){
       setMovieCount(12);
-    } else  if(width > 550){   
+    } else  if(width > MonitorWidth.small){   
       setMovieCount(8);
     } else {
       setMovieCount(5);
@@ -105,6 +111,13 @@ function App() {
     setLoggedIn(!loggedIn)
   }
 
+  
+  function handleLogOut(){
+    localStorage.removeItem('token');
+    setLoggedIn(!loggedIn)
+    history.push('/')
+ }
+
   function handleInfoTooltip(){
     setIsInfoTooltip(true);
     setTimeout(function() {
@@ -125,17 +138,11 @@ function App() {
   }
 
 
-  function handleSearc(values,atribut,dop,setter,setterInfo){
-    let newMovie;
-    let lang=(/[а-яё]/i).test(atribut.toLowerCase)   
-   
-    if(dop){
-      newMovie=values.filter(item => item.duration < 40).filter(movie=> (lang?movie.nameEN:movie.nameRU).toLowerCase().match(new RegExp(atribut.toLowerCase())))
-      setter(newMovie);
-    }else{
-      newMovie= values.filter(movie=> (lang?movie.nameEN:movie.nameRU).toLowerCase().match(new RegExp(atribut.toLowerCase())))    
-      setter(newMovie);
-    } 
+  function handleSearc(values,atribut,setter,setterInfo){
+    let lang=(/[а-яё]/i).test(atribut.toLowerCase)
+    let newMovie= values.filter(movie=> (lang?movie.nameEN:movie.nameRU).toLowerCase().match(new RegExp(atribut.toLowerCase())))
+    
+    setter(newMovie);  
     if (newMovie.length===0){
       setterInfo('Ничего не найдено')
     }else{
@@ -143,23 +150,53 @@ function App() {
     }
   }
 
-  function searchMovie(atribut, dop){
+
+  function handlerShortFilm(dop,setter,setterInfo, setMovie, key){
+    if(dop){
+      let newMovie=setMovie.filter(item => item.duration < ShortFilmTime);
+      setter(newMovie); 
+      if (newMovie.length===0){
+        setterInfo('Ничего не найдено')
+      }else{
+        setterInfo('')
+      }
+    }else{ 
+      setter(JSON.parse(localStorage.getItem(key))); 
+    }
+  }
+
+  
+
+  function searchMovie(atribut,dop){
     setRender(true)   
     MoviesApi.getMovies()
     .then((values)=>{ 
       localStorage.setItem('movie',JSON.stringify(values));
-      handleSearc(values,atribut, dop,setMovie,setInfoSearch) 
+      handleSearc(values,atribut, setMovie,setInfoSearch);
+      handlerShortFilm(dop,setMovie,setInfoSearch,movie,'movie') 
       setRender(false);
     
     }).catch(setInfoSearch("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"))
 }
 
+function searchShortMovie(atribut){
+  setRender(true);
+  handlerShortFilm(atribut,setMovie,setInfoSearch,movie,'movie')
+  setRender(false);  
+}
 
-function searchMyMovie(atribut, dop){
+function searchMyShortMovie(atribut){
+  setRender(true);
+  handlerShortFilm(atribut,setMyMovie,setMyInfoSearch,myMovie,'myMovie')
+  setRender(false);  
+}
+
+function searchMyMovie(atribut,dop){
   setRender(true)
   MainApi.getMovie()
   .then((values)=>{ 
-    handleSearc(values,atribut, dop,setMyMovie,setMyInfoSearch) 
+    handleSearc(values,atribut, setMyMovie,setMyInfoSearch) 
+    handlerShortFilm(dop,setMyMovie,setMyInfoSearch,myMovie,'myMovie')
     setRender(false);
   }).catch( setMyInfoSearch("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"))
 }
@@ -250,18 +287,24 @@ function searchMyMovie(atribut, dop){
   }
 
   function handleGetMyMovie(setter){
-    MainApi.getMovie().then((res)=>{setter(res)}).catch((err) =>{setter([])})
+    MainApi.getMovie().then((res)=>{setter(res);localStorage.setItem('myMovie',JSON.stringify(res))}).catch((err) =>{setter([])})
   }
 
+  function handleGoBack(){
+    history.goBack()
+  }
 
   function handlerTokenCheck(){ 
     if (localStorage.getItem('token')){
+      handleLoggedIn()
       if(performance.navigation.type===1){
         if (localStorage.getItem('route')){
           history.push(localStorage.getItem('route'))
         }
-      }else{history.push('/movies')}
-      handleLoggedIn();		
+      }else{       
+        if(history.location.pathname==="/"){
+          history.push("/movies")
+        }}
       MainApi.getUserInfo().then((res)=>{        
       if(res){   		
           setCurrentUser(res);
@@ -275,6 +318,7 @@ function searchMyMovie(atribut, dop){
       }
   }
 
+
   function handleCheckSaveMovie(){    
     movie.map((movie)=>{     
       if( myMovie.find(myMovie =>myMovie.movieId===movie.id)){        
@@ -285,29 +329,29 @@ function searchMyMovie(atribut, dop){
     }) 
   }
 
+  
   handleCheckSaveMovie()
 
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
       <InfoTooltip isOpened={isInfoTooltip} result={result} handleCloseInfoTooltip={handleCloseInfoTooltip}/>
-      <Switch>
-         
+      <Switch>         
         <Route path="/movies">
-        {loggedIn ? <Redirect to="/movies" /> : <Redirect to="/" />}
+        {localStorage.getItem('token') ? <Redirect to="/movies" /> : <Redirect to="/" />}
           <Header loggedIn={loggedIn} />
-          <Movies   movie={movie} myMovie={myMovie} handleDeleteMovie={handleDeleteMovie} handleSaveMovie={handleSaveMovie} info={infoSearch} addMovie={addMovie} more={more} handleSetMore={handleSetMore} handlerSubmit={searchMovie} movieCount={movieCount} setMovieCount={setMovieCount} render={render}/>
+          <Movies   movie={movie} myMovie={myMovie} handlerShortFilm={searchShortMovie} handleDeleteMovie={handleDeleteMovie} handleSaveMovie={handleSaveMovie} info={infoSearch} addMovie={addMovie} more={more} handleSetMore={handleSetMore} handlerSubmit={searchMovie} movieCount={movieCount} setMovieCount={setMovieCount} render={render}/>
           <Footer />
         </Route>
         <Route path="/profile">
-        {loggedIn ? <Redirect to="/profile" /> : <Redirect to="/" />}
+        {localStorage.getItem('token') ? <Redirect to="/profile" /> : <Redirect to="/" />}
           <Header loggedIn={loggedIn} />
-          <Profile handleLoggedIn={handleLoggedIn} handleRedactProfile={handleRedactProfile}/>
+          <Profile handleLogOut={handleLogOut} handleLoggedIn={handleLoggedIn} handleRedactProfile={handleRedactProfile}/>
         </Route>
         <Route path="/saved-movies">  
-        {loggedIn ? <Redirect to="/saved-movies" /> : <Redirect to="/" />}     
+        {localStorage.getItem('token') ? <Redirect to="/saved-movies" /> : <Redirect to="/" />}     
           <Header loggedIn={loggedIn} />
-          <SavedMovies info={infoMySearch} handlerSubmit={searchMyMovie} handleGetMyMovie={handleGetMyMovie} handleDeleteMovie={handleDeleteMyMovie} myMovie={myMovie} movieCount={movieCount}  render={render}/>
+          <SavedMovies info={infoMySearch} searchMyShortMovie={searchMyShortMovie} handlerSubmit={searchMyMovie} handleGetMyMovie={handleGetMyMovie} handleDeleteMovie={handleDeleteMyMovie} myMovie={myMovie} movieCount={movieCount}  render={render}/>
           <Footer />
         </Route>
         <Route exact path="/">
@@ -317,13 +361,15 @@ function searchMyMovie(atribut, dop){
         </Route>
        
         <Route path="/signin">
+          {loggedIn ? <Redirect to="/movies" /> : <Redirect to="/signin" />}   
           <Login handleSubmitLogin={handleSubmitLogin}/>
         </Route>
         <Route path="/signup">
+        {loggedIn ? <Redirect to="/movies" /> : <Redirect to="/signup" />}   
           <Register handleSubmitRegister={handleSubmitRegister} />
         </Route>
         <Route>
-          <NotFound />
+          <NotFound handleGoBack={handleGoBack}/>
         </Route>
   
       </Switch>
