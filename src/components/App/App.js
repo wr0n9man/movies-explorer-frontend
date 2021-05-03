@@ -161,7 +161,12 @@ function App() {
         setterInfo('')
       }
     }else{ 
-      setter(JSON.parse(localStorage.getItem(key))); 
+      setter(JSON.parse(localStorage.getItem(key)));
+      if ((JSON.parse(localStorage.getItem(key))).length===0){
+        setterInfo('Ничего не найдено')
+      }else{
+        setterInfo('')
+      } 
     }
   }
 
