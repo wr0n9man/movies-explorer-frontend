@@ -1,0 +1,143 @@
+.profile{
+	padding: 74px 70px 70px 70px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: calc(100vh - 144px);
+
+}
+
+.profile__header{
+	margin-top: 74px;
+	margin-bottom: 123px;
+	font-family: Inter;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 29px;
+	/* identical to box height */
+
+	text-align: center;
+
+	color: #000000;
+}
+
+.profile__form{
+	width: 410px;
+}
+
+.profile__name{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	border-bottom: 1px solid #E8E8E8;
+}
+
+.profile__span{
+	font-family: Inter;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 11px;
+	line-height: 13px;
+	/* identical to box height */	
+	color: #000000;
+}
+
+.profile__input{
+	height: 36px;
+	width: 90%;
+	border: none;
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 11px;
+	line-height: 13px;
+	/* identical to box height */
+	
+	text-align: right;
+	
+	color: #000000;
+}
+
+.profile__email{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+}
+
+.profile__redact{
+	width: 100%;
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 13px;
+	line-height: 16px;
+	/* identical to box height */
+	border: none;
+	background-color: white;	
+	text-align: center;	
+	color: #000000;
+	margin-bottom: 16px;
+	opacity: .5;
+	transition: all ease-in-out .3s;
+	margin-top: 200px;
+}
+
+.profile__redact_active{
+	opacity: 1;
+} 
+
+
+.profile__redact_active:hover{
+	cursor: pointer;
+	transform: scale(1.2);
+} 
+
+
+.profile__redact_active:active{
+	cursor: pointer;
+	transform: scale(1.1);
+} 
+
+.profile__logout{
+	border: none;
+	background-color: white;
+	
+   font-family: Inter;
+   font-style: normal;
+   font-weight: 500;
+   font-size: 13px;
+   line-height: 16px;
+   /* identical to box height */
+
+   text-align: center;
+	transition: all ease-in-out .3s;
+   color: #EE3465;
+}
+
+.profile__logout:hover{
+	cursor: pointer;
+	transform: scale(1.2);
+} 
+
+.profile__logout:active{
+	cursor: pointer;
+	transform: scale(1.1);
+} 
+
+.profile__error{
+	text-align: left;
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 10px;
+	line-height: 12px;
+	margin-bottom: 20px;
+	color: #EE3465;
+
+}
+
+

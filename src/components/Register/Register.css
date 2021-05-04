@@ -1,0 +1,153 @@
+.register{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+.register__logo{
+	width: 38px;
+	margin-right: 358px;
+	margin-bottom: 40px;
+}
+
+.register__header{
+	text-align: left;
+	width: 396px;
+	margin-bottom: 40px;
+}
+
+.register__form{
+	display: flex;
+	flex-direction: column;
+	width: 396px;
+}
+
+.register__span{
+	text-align: left;
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 10px;
+	line-height: 12px;
+	margin-bottom: 10px;
+
+	color: #A0A0A0;
+}
+
+.register__input{
+	height: 45px;
+	width: 396px;
+	border: none;
+	background-color: #F9F9F9;
+	border-radius: 8px;
+}
+
+.register__error{
+	text-align: left;
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 10px;
+	line-height: 12px;
+	margin-bottom: 20px;
+	color: #EE3465;
+}
+
+.register__button{
+	padding: 13px 124px;
+	border: none;
+	margin-top: 90px;
+	background-color: #2BE080;
+	border-radius: 3px;
+	opacity: .5;
+	font-family: Inter;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 17px;
+	/* identical to box height */
+
+	text-align: center;
+
+	color: #FFFFFF;
+	transition: all 1s ease 0s;
+}
+
+.register__button_active{
+	opacity: 1;
+}
+
+.register__button_active:active{
+	cursor: pointer;
+	transform: scale(.9,.9);
+}
+
+.register__button_active:hover{
+	cursor: pointer;
+	transform: scale(1.1,1.1);
+}
+
+
+.register__dop{
+	display: flex;
+	align-items: center;
+}
+
+.register__text{
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 17px;
+	/* identical to box height */
+
+	text-align: center;
+
+	color: #A0A0A0;
+	margin-right: 6px;
+}
+
+.register__link{
+	text-decoration: none;
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 17px;
+	/* identical to box height */
+
+	text-align: center;
+
+	color: #2BE080;
+}
+
+@media screen and (max-width:767px) {
+   .register__logo{
+      margin: auto;
+      margin-top: 56px;
+   }
+   .register__form{
+      width: auto;
+   }
+   .register__header{
+      width: auto;
+   }
+   .register__input{
+      margin: auto;
+      margin-bottom: 20px;
+      width: 260px;
+
+   }
+   .register__span{
+      width: 260px;
+      margin:auto;
+   }
+   .register__button{
+      width: 261px;
+      margin: auto;
+      margin-top: 137px;
+      padding: 15px 68px;
+   }
+}

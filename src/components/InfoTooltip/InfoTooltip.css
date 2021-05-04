@@ -1,0 +1,55 @@
+.infoTooltip{
+	position: fixed;
+	top:35px;
+	left: 100%;
+	transition: all ease-in-out .3s;
+	z-index: 999999;
+}
+
+.infoTooltip__is-opened{
+	left: 75%;
+}
+
+.infoTooltip__container{
+	width: 250px;
+
+	background-color: rgb(241, 101, 101);
+	border-radius: 15px;
+	box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+	display: flex;
+}
+
+.infoTooltip__container_true{
+	background-color: rgb(126, 240, 141);
+	width: 250px;
+}
+
+.infoTooltip__close-image{
+
+	background: none;
+	border: none;
+	color: white;
+}
+
+.infoTooltip__close-image:after {
+	position: absolute;
+	right: 10px;
+	top: 15px;
+	content: "\d7";
+	font-size: 50px; 
+	color: #FFF;
+	line-height: 0;
+	text-align: center;
+}
+
+
+.infoTooltip__txt{
+	text-align: left;
+	padding: 5px 5px;
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 20px;
+	color: #000000;
+}
