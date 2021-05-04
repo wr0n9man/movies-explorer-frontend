@@ -138,11 +138,12 @@ function App() {
   }
 
 
-  function handleSearc(values,atribut,setter,setterInfo){
+  function handleSearc(values,atribut,setter,setterInfo,key){
     let lang=(/[а-яё]/i).test(atribut.toLowerCase)
     let newMovie= values.filter(movie=> (lang?movie.nameEN:movie.nameRU).toLowerCase().match(new RegExp(atribut.toLowerCase())))
-    
-    setter(newMovie);  
+    console.log(newMovie);    
+    setter(newMovie); 
+    localStorage.setItem(key,JSON.stringify(newMovie)); 
     if (newMovie.length===0){
       setterInfo('Ничего не найдено')
     }else{
@@ -177,7 +178,7 @@ function App() {
     MoviesApi.getMovies()
     .then((values)=>{ 
       localStorage.setItem('movie',JSON.stringify(values));
-      handleSearc(values,atribut, setMovie,setInfoSearch);
+      handleSearc(values,atribut, setMovie,setInfoSearch,'movie');
       handlerShortFilm(dop,setMovie,setInfoSearch,movie,'movie') 
       setRender(false);
     
@@ -200,7 +201,7 @@ function searchMyMovie(atribut,dop){
   setRender(true)
   MainApi.getMovie()
   .then((values)=>{ 
-    handleSearc(values,atribut, setMyMovie,setMyInfoSearch) 
+    handleSearc(values,atribut, setMyMovie,setMyInfoSearch,'myMovie') 
     handlerShortFilm(dop,setMyMovie,setMyInfoSearch,myMovie,'myMovie')
     setRender(false);
   }).catch( setMyInfoSearch("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"))
