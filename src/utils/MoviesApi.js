@@ -7,9 +7,11 @@ class MoviesApi {
 		return fetch(`${this.baseUrl}`,{
 			method: 'GET',		
 			headers:{ "Content-Type": "application/json",}
-		}).then(res => { return res.json()})
+		}).then(res => {	
+			if (res.ok) {
+			return res.json();
+		}})
 		.then(data => data)
-		.catch(err => {})	
 	}
 
 
